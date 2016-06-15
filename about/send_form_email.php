@@ -7,6 +7,8 @@ if(isset($_POST['email'])) {
     // EDIT THE 2 LINES BELOW AS REQUIRED
  
     $email_to = "mallikdav@gmail.com";
+
+    $email_cc = "mallikdav@gmail.com";
  
     $email_subject = "Dr Mallik K N | Contact Request";
  
@@ -128,11 +130,14 @@ if(isset($_POST['email'])) {
  
 // create email headers
  
-$headers = 'From: '.$email_from."\r\n".
+$headers = 'From: '.$email_from."\r\n";
  
-'Reply-To: '.$email_from."\r\n" .
+$headers .= 'Reply-To: '.$email_from."\r\n";
  
-'X-Mailer: PHP/' . phpversion();
+$headers .= 'Cc: '.$email_cc."\r\n";
+ 
+$headers .= 'X-Mailer: PHP/' . phpversion();
+
  
 @mail($email_to, $email_subject, $email_message, $headers);  
  
